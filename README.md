@@ -18,3 +18,19 @@ Tenho o objetivo aqui de iniciar discussões sobre desenvolvimento de software e
 
 Estou sempre aberto pra trocar ideia sobre desenvolvimento de software mas também sobre outras coisas de tecnologia (ou não).
 
+## Primeira tela - Login
+
+Principais objetivos: entender os conceitos básicos do funcionamento do flutter.
+
+Tarefas:
+
+ - Criar uma tela com inputs e o botão (v)
+ - Componentizar input e botão com os estilos do app (v)
+ - Separar cores em um arquivo de tema separado (v)
+ - Configurar estado para capturar valores de senha e usuario (v)
+ - Configurar reação do botão quando o valor de `disabled` muda ( )
+ - Conectar App com projeto no Firebase ( )
+ - Configurar estado global com informações de carregamento, warnings, erros e usuário logado ( )
+ - Fazer Login usando Firebase ( )
+ - Criar botão para acesso à tela de cadastro ( )
+

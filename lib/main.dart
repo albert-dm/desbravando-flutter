@@ -1,11 +1,11 @@
+import 'package:first_app/components/button/button.dart';
+import 'package:first_app/components/input/input.dart';
+import 'package:first_app/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
-
-const primaryColor = Color(0xFF023246);
-const secondaryColor = Color(0xFF4BBAB5);
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(title: 'Faça o login para começar'),
+      home: LoginPage(),
     );
   }
 }
@@ -27,21 +27,22 @@ class MyApp extends StatelessWidget {
 /// Separação de cores e estilos
 /// criação do estado pro login e senha
 
-
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  LoginPage({Key key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String user;
+
+  String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: colors['primaryColor'],
       body: Center(
           child: Padding(
         padding: EdgeInsets.all(20),
@@ -52,63 +53,30 @@ class _LoginPageState extends State<LoginPage> {
               padding: EdgeInsets.only(bottom: 30),
               child: Text(
                 'Faça o login para começar',
-                style: TextStyle(fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  hintText: 'Usuário',
-                  hintStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                  ),
-                  contentPadding: EdgeInsets.all(20),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: TextField(
-                obscureText: true,
-                style: TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  hintText: 'Senha',
-                  hintStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                  ),
-                  contentPadding: EdgeInsets.all(20),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 50),
-              child: RawMaterialButton(
-                  onPressed: () {
-                    debugPrint('Button clicked');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: secondaryColor,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    padding: EdgeInsets.all(20),
-                    child: Text('Entrar',
-                        style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-                  )),
+            Input(
+                type: 'text',
+                onChanged: (newValue) {
+                  user = newValue;
+                },
+                label: 'Usuário'),
+            Input(
+                type: 'password',
+                onChanged: (newValue) {
+                  password = newValue;
+                },
+                label: 'Senha'),
+            Button(
+              onPressed: () {
+                debugPrint('Username:' + user + ' Password:' + password);
+              },
+              label: 'Fazer login',
+              disabled: user.isEmpty || password.isEmpty,
             ),
           ],
         ),
